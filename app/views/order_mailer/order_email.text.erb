@@ -1,8 +1,8 @@
-<%= yield %> Hi <%=@user.first_name%>, Thank you for ordering from the jungle!
+<%= yield %> Thank you for ordering from the jungle!
     ************************************************************************
 
 You have placed an order for the following:
- 
- @order.to_string
+
+@order.line_items.all
 
 Thank you for for your order! Have a great day!
