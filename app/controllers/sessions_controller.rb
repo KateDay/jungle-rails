@@ -1,13 +1,14 @@
 class SessionsController < ApplicationController
-
+  def new
+  end
   def create
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
-      session[user_id] = user.id
+      session[:user_id] = user.id
       redirect_to '/'
     else
-      redirect_to'login'
-      flash[:notice] = "I can't find that in my system, please try again"
+      flash.now.alert = "I can't find that in my system, please try again"
+      redirect_to'/login'
     end
   end
 
@@ -16,3 +17,4 @@ class SessionsController < ApplicationController
     redirect_to '/'
   end
 end
+
