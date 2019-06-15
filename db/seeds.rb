@@ -134,8 +134,10 @@ cat3.products.create!({
 
 # Create a user
 user1 = User.first_or_create(
-  email: 'c@c.com',
-  password: '123456'
+  email: 'd@c.com',
+  password: '123456',
+  first_name: 'Fake',
+  last_name: 'Whocares'
 )
 
 ## Populating the first review...
