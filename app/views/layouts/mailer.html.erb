@@ -1,10 +1,5 @@
 <html>
-	<body>
-		<h1>Thank you, <%= @user.first_name %> for ordering from the jungle</h1>
-		<p>We have gotten your order as follows: <br /></p>
-		<p>
-			<% @order.line_items.all.each_do |item | %> <%= render %>
-		</p>
-		<p>Thanks for shopping in the Jungle, have a great day!</p>
-	</body>
+  <body>
+    <%= yield %>
+  </body>
 </html>
