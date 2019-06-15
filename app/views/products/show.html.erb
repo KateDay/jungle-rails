@@ -1,36 +1,39 @@
 <section class="products-show">
+	<header class="page-header">
+		<h1>
+			<%= link_to @product.category.name, @product.category %> &raquo; <%=
+			@product.name %>
+		</h1>
+	</header>
 
-  <header class="page-header">
-    <h1><%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %></h1>
-  </header>
+	<article class="product-detail">
+		<div class="row">
+			<div class="col-sm-4">
+				<%= image_tag @product.image.url, class: 'main-img' %>
+			</div>
 
-  <article class="product-detail">
-
-    <div class="row">
-
-      <div class="col-sm-4">
-        <%= image_tag @product.image.url, class: 'main-img' %>
-      </div>
-
-      <div class="col-sm-8">
-        <dl class="dl-horizontal">
-          <dt>Name</dt>
-          <dd><%= @product.name %></dd>
-          <dt>Description</dt>
-          <dd><%= @product.description %></dd>
-          <dt>Quantity</dt>
-          <dd><%= @product.quantity %></dd>
-          <dt>Price</dt>
-          <dd><%= @product.price %></dd>
-          <dt>Reviews</dt>
-          <% @product.reviews.each do |review| %>
-            <dd><%= review.description %></dd>
-            <dd><%= review.rating %></dd>
-          <% end %>
-        </dl>
-      </div>
-    </div>
-
-  </article>
-
+			<div class="col-sm-8">
+				<dl class="dl-horizontal">
+					<dt>Name</dt>
+					<dd><%= @product.name %></dd>
+					<dt>Description</dt>
+					<dd><%= @product.description %></dd>
+					<dt>Quantity</dt>
+					<dd><%= @product.quantity %></dd>
+					<dt>Price</dt>
+					<dd><%= @product.price %></dd>
+				</dl>
+			</div>
+			<div class="col-sm-8" class="review_box">
+				<h4>Reviews</h4>
+				<dl class="dl-horizontal">
+					<% @product.reviews.each do |review| %>
+					<dt><%= review.user.first_name %></dt>
+					<dd><%= review.description %></dd>
+					<dd><%= review.rating %> / 5</dd>
+					<% end %>
+				</dl>
+			</div>
+		</div>
+	</article>
 </section>
