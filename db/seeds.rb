@@ -132,5 +132,20 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+# Create a user
+user1 = User.first_or_create(
+  email: 'c@c.com',
+  password: '123456'
+)
+
+## Populating the first review...
+puts "Creating product reviews..."
+Review.create({
+  product: cat1.products.first,
+  user: user1,
+  description: '10/10 will buy again!',
+  rating: 5
+})
+
 
 puts "DONE!"
