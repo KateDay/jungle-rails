@@ -25,55 +25,60 @@
 				</dl>
 			</div>
 			<div class="col-sm-8" class="review_box">
-        <h4>Reviews</h4>
-        <% if @reviews.blank? %>
-            <dl class="dl-horizontal">
-              <dd> Be the first to submit a review! </dd>
-            </dl>
-        <% else %>
-          <dl class="dl-horizontal">
-            <% @product.reviews.each do |review| %>
-            <dt><%= review.user.first_name %></dt>
-            <dd><%= review.description %></dd>
-            <dd><%= review.rating %> / 5</dd>
-            <% end %>
-          </dl>
-        <% end %>
-      </div>
-      
-      <%= form_for(@review) do |f| %> <% if @review.errors.any? %>
-		<div id="error_explanation">
-			<h2>
-				<%= pluralize(@review.errors.count, "error") %> prohibited this review
-				from being saved:
-			</h2>
-
-			<ul>
-				<% @review.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
+				<h4>Reviews</h4>
+				<% if @reviews.blank? %>
+				<h1>No reviews yet!</h1>
+				<% else %>
+        <dl class="dl-horizontal">
+          <% @product.reviews.each do |review| %>
+          <dt><%= review.user.first_name %></dt>
+          <dd><%= review.description %></dd>
+          <dd><%= review.rating %> / 5</dd>
+          <% end %>
+        </dl>
 				<% end %>
-			</ul>
-		</div>
-		<% end %>
+				
 
-    <div class="field">  
-      <input type="hidden" id="review_product_id" name="review[product_id]" value="<%= @product.id %>" />	
-    </div>
-		<div class="field">
-			<%= f.label :description %><br />
-			<%= f.text_area :description, placeholder: 'How awesome is this product?'%>
-		</div>
-		<div class="field">
-			<%= f.label :rating %><br />
-      <%= f.select :rating, options_for_select([['1', 1.to_i], ['2', 2.to_i], ['3', 3.to_i], ['4', 4], ['5', 5]]) %>
-		</div>
-		<div class="actions">
-			<%= f.submit %> 
-		</div>
-		<% end %>
+				<div class="col-sm-8">
+					<%= form_for(@review) do |f| %> <% if @review.errors.any? %>
+					<div id="error_explanation">
+						<h2>
+							<%= pluralize(@review.errors.count, "error") %> prohibited this
+							review from being saved:
+						</h2>
 
-		</div>
+						<ul>
+							<% @review.errors.full_messages.each do |message| %>
+							<li><%= message %></li>
+							<% end %>
+						</ul>
+					</div>
+					<% end %>
 
-		
+					<div class="field">
+						<input
+							type="hidden"
+							id="review_product_id"
+							name="review[product_id]"
+							value="<%= @product.id %>"
+						/>
+					</div>
+					<div class="field">
+						<%= f.label :description %><br />
+						<%= f.text_area :description, placeholder: 'How awesome is this
+						product?'%>
+					</div>
+					<div class="field">
+						<%= f.label :rating %><br />
+						<%= f.select :rating, options_for_select([['1', 1.to_i], ['2',
+						2.to_i], ['3', 3.to_i], ['4', 4], ['5', 5]]) %>
+					</div>
+					<div class="actions">
+						<%= f.submit %>
+					</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
 	</article>
 </section>
