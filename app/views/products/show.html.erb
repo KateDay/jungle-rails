@@ -41,9 +41,7 @@
 					<% end %>
 				</dl>
 				<% end %>
-        <% if current_user %>
-            You are logged in
-        <% end %>
+
 				<div class="form">
 					<%= form_for(@review) do |f| %> <% if @review.errors.any? %>
 					<div id="error_explanation">
