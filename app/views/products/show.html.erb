@@ -25,18 +25,23 @@
 				</dl>
 			</div>
 			<div class="col-sm-8" class="review_box">
-				<h4>Reviews</h4>
-				<dl class="dl-horizontal">
-					<% @product.reviews.each do |review| %>
-					<dt><%= review.user.first_name %></dt>
-					<dd><%= review.description %></dd>
-					<dd><%= review.rating %> / 5</dd>
-					<% end %>
-				</dl>
-			</div>
-		</div>
-
-		<%= form_for(@review) do |f| %> <% if @review.errors.any? %>
+        <h4>Reviews</h4>
+        <% if @reviews.blank? %>
+            <dl class="dl-horizontal">
+              <dd> Be the first to submit a review! </dd>
+            </dl>
+        <% else %>
+          <dl class="dl-horizontal">
+            <% @product.reviews.each do |review| %>
+            <dt><%= review.user.first_name %></dt>
+            <dd><%= review.description %></dd>
+            <dd><%= review.rating %> / 5</dd>
+            <% end %>
+          </dl>
+        <% end %>
+      </div>
+      
+      <%= form_for(@review) do |f| %> <% if @review.errors.any? %>
 		<div id="error_explanation">
 			<h2>
 				<%= pluralize(@review.errors.count, "error") %> prohibited this review
@@ -56,15 +61,19 @@
     </div>
 		<div class="field">
 			<%= f.label :description %><br />
-			<%= f.text_area :description %>
+			<%= f.text_area :description, placeholder: 'How awesome is this product?'%>
 		</div>
 		<div class="field">
 			<%= f.label :rating %><br />
-			<%= f.number_field :rating %>
+      <%= f.select :rating, options_for_select([['1', 1.to_i], ['2', 2.to_i], ['3', 3.to_i], ['4', 4], ['5', 5]]) %>
 		</div>
 		<div class="actions">
 			<%= f.submit %> 
 		</div>
 		<% end %>
+
+		</div>
+
+		
 	</article>
 </section>
