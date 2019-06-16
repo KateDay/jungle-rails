@@ -2,10 +2,10 @@
   <h1>Sign up!</h1>
 
   <%= form_for :user, url: '/users' do |f| %>
-    <div>
-      <%= f.label :first_name %><br>  
-      <%= f.text_field :first_name, placeholder: "First Name" %>
-      <%= f.label :last_name %>
+    <div class='name'>
+      <%= f.label :first_name %><br>
+      <%= f.text_field :first_name, placeholder: "First Name" %><br>
+      <%= f.label :last_name %><br>
       <%= f.text_field :last_name, placeholder: "Last Name" %>
     </div>
     <div>
@@ -14,8 +14,7 @@
     </div>
     <div>
       <%= f.label :password %><br>
-      <%= f.password_field :password, placeholder: "Password" %>
-      <%= f.label :password_confirmation %>
+      <%= f.password_field :password, placeholder: "Password" %><br>
       <%= f.password_field :password_confirmation, placeholder: "Confirm our password" %>
     </div> 
     <%= f.submit "Submit" %>
