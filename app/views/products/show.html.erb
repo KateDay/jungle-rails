@@ -24,22 +24,27 @@
 					<dd>$<%= @product.price %></dd>
 				</dl>
 			</div>
-			<div class="col-sm-8" class="review_box">
-				<h4>Reviews</h4>
+			<div id="review_box" class="col-sm-8">
+				<h3>Reviews</h3>
 				<% if @reviews.blank? %>
-				<h1>No reviews yet!</h1>
+				<h5>
+					<strong>
+						Be the first to submit a review!
+					</strong>
+				</h5>
 				<% else %>
-        <dl class="dl-horizontal">
-          <% @product.reviews.each do |review| %>
-          <dt><%= review.user.first_name %></dt>
-          <dd><%= review.description %></dd>
-          <dd><%= review.rating %> / 5</dd>
-          <% end %>
-        </dl>
+				<dl class="dl-horizontal">
+					<% @product.reviews.each do |review| %>
+					<dt><%= review.user.first_name %></dt>
+					<dd><%= review.description %></dd>
+					<dd><%= review.rating %> / 5</dd>
+					<% end %>
+				</dl>
 				<% end %>
-				
-
-				<div class="col-sm-8">
+        <% if current_user %>
+            You are logged in
+        <% end %>
+				<div class="form">
 					<%= form_for(@review) do |f| %> <% if @review.errors.any? %>
 					<div id="error_explanation">
 						<h2>
@@ -54,7 +59,7 @@
 						</ul>
 					</div>
 					<% end %>
-
+          <h4>Add your review</h4>
 					<div class="field">
 						<input
 							type="hidden"
@@ -65,17 +70,16 @@
 					</div>
 					<div class="field">
 						<%= f.label :description %><br />
-						<%= f.text_area :description, placeholder: 'How awesome is this
-						product?'%>
+						<%= f.text_area :description, placeholder: 'How awesome is this product?'%>
 					</div>
-					<div class="field">
+					<span class="rating" >
 						<%= f.label :rating %><br />
 						<%= f.select :rating, options_for_select([['1', 1.to_i], ['2',
 						2.to_i], ['3', 3.to_i], ['4', 4], ['5', 5]]) %>
-					</div>
-					<div class="actions">
+					</span>
+					<span class="actions">
 						<%= f.submit %>
-					</div>
+					</span>
 					<% end %>
 				</div>
 			</div>
