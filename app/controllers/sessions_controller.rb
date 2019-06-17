@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       redirect_to '/'
     else
       flash.now.alert = "I can't find that in my system, please try again"
-      redirect_to'/login'
+      render 'new'
     end
   end
 

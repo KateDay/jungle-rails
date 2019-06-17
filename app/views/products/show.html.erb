@@ -37,8 +37,11 @@
 					<% @product.reviews.each do |review| %>
 					<dt><%= review.user.first_name %></dt>
 					<dd><%= review.description %></dd>
-					<dd><%= review.rating %> / 5</dd>
-					<% end %>
+          <dd><strong><%= review.rating %> / 5</strong></dd>
+            <% if review.user_id == current_user %>
+              <dd><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          <% end %>
 				</dl>
 				<% end %>
 
