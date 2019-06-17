@@ -36,10 +36,10 @@
 				<dl class="dl-horizontal">
 					<% @product.reviews.each do |review| %>
 					<dt><%= review.user.first_name %></dt>
-					<dd><%= review.description %></dd>
           <dd><strong><%= review.rating %> / 5</strong></dd>
-            <% if review.user_id == current_user %>
-              <dd><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					<dd><%= review.description %></dd>
+            <% if review.user_id == current_user.id %>
+              <dd><%= link_to fa_icon('trash'), review, class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
           <% end %>
 				</dl>
