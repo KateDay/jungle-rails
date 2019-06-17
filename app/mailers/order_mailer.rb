@@ -1,9 +1,8 @@
 class OrderMailer < ApplicationMailer
   
-  def welcome_email
-    @order = params[:order]
-    @user = params[:user]
+  def order_email order
+    @order = order
     @url = 'http://localhost:3000/'
-    mail(to: @user.email, subject: 'Thanks for ordering from the Jungle @order.id')
+    mail(to: @order.email, subject: 'Thanks for ordering from the Jungle: @order.id')
   end
 end
