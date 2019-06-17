@@ -44,45 +44,50 @@
           <% end %>
 				</dl>
 				<% end %>
+        <% if current_user %>
+          <div class="form">
+            <%= form_for(@review) do |f| %> <% if @review.errors.any? %>
+            <div id="error_explanation">
+              <h2>
+                <%= pluralize(@review.errors.count, "error") %> prohibited this
+                review from being saved:
+              </h2>
 
-				<div class="form">
-					<%= form_for(@review) do |f| %> <% if @review.errors.any? %>
-					<div id="error_explanation">
-						<h2>
-							<%= pluralize(@review.errors.count, "error") %> prohibited this
-							review from being saved:
-						</h2>
-
-						<ul>
-							<% @review.errors.full_messages.each do |message| %>
-							<li><%= message %></li>
-							<% end %>
-						</ul>
-					</div>
-					<% end %>
+              <ul>
+                <% @review.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+            <% end %>
+            <h4>Add your review</h4>
+            <div class="field">
+              <input
+                type="hidden"
+                id="review_product_id"
+                name="review[product_id]"
+                value="<%= @product.id %>"
+              />
+            </div>
+            <div class="field">
+              <%= f.label :description %><br />
+              <%= f.text_area :description, placeholder: 'How awesome is this product?'%>
+            </div>
+            <span class="rating" >
+              <%= f.label :rating %><br />
+              <%= f.select :rating, options_for_select([['1', 1.to_i], ['2',
+              2.to_i], ['3', 3.to_i], ['4', 4], ['5', 5]]) %>
+            </span>
+            <span class="actions">
+              <%= f.submit %>
+            </span>
+            <% end %>
+          </div>
+        <% else %>
           <h4>Add your review</h4>
-					<div class="field">
-						<input
-							type="hidden"
-							id="review_product_id"
-							name="review[product_id]"
-							value="<%= @product.id %>"
-						/>
-					</div>
-					<div class="field">
-						<%= f.label :description %><br />
-						<%= f.text_area :description, placeholder: 'How awesome is this product?'%>
-					</div>
-					<span class="rating" >
-						<%= f.label :rating %><br />
-						<%= f.select :rating, options_for_select([['1', 1.to_i], ['2',
-						2.to_i], ['3', 3.to_i], ['4', 4], ['5', 5]]) %>
-					</span>
-					<span class="actions">
-						<%= f.submit %>
-					</span>
-					<% end %>
-				</div>
+          <h5><strong>You must login to submit a review</strong></h5>
+        <% end %>
+
 			</div>
 		</div>
 	</article>
