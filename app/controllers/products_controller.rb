@@ -9,5 +9,4 @@ class ProductsController < ApplicationController
     @review = Review.new
     @reviews = Review.where(product_id: @product.id).order('created_at DESC')
   end
-
 end
