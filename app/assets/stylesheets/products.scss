@@ -84,6 +84,37 @@ main section.products-show {
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: column;
+		padding: 1em;
+		.reviews {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			display: inline-block;
+			.review {
+				display: flex;
+				justify-content: space-between;
+				max-width: 40em;
+				padding-inline-start: 8em;
+			}
+			.review-meta {
+				flex: 1;
+				display: flex;
+				flex-wrap: wrap;
+				.review-text {
+					width: 100%;
+					padding: 0 1.5em;
+				}
+				dt {
+					padding: 0 1.5em;
+				}
+			}
+			.review-actions {
+				padding: 0;
+				margin: 0;
+				list-style: none;
+				align-self: center;
+			}
+		}
 		.form {
 			width: 100%;
 			display: flex;
